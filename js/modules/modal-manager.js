@@ -11,16 +11,12 @@ const CONSTANTS = {
 
 // Предопределенные условия
 const PREDEFINED_CONDITIONS = [
-    { condition: 'минус', mainText: '', redText: 'минус', afterText: '', arrowHours: 1, arrowColor: '#DEE7F6' },
-    { condition: '600х6', mainText: '', redText: '600х6', afterText: '', arrowHours: 1, arrowColor: '#E9FFEA' },
-    { condition: '300х3', mainText: '', redText: '300х3', afterText: '', arrowHours: 1, arrowColor: '#DAE6F4' },
-    { condition: '200х2', mainText: '', redText: '200х2', afterText: '', arrowHours: 1, arrowColor: '#FFFECE' },
-    { condition: '100х1', mainText: '', redText: '100х1', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
-    { condition: '50х0.6', mainText: '', redText: '50х0.6', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
-    { condition: 'туман', mainText: '', redText: 'туман', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
-    { condition: 'гроза', mainText: '', redText: 'гроза', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
-    { condition: 'шквал', mainText: '', redText: 'шквал', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
-    { condition: 'гололед', mainText: '', redText: 'гололед', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' }
+    { condition: '600х6', mainText: '600х6', redText: '', afterText: '', arrowHours: 1, arrowColor: '#E9FFEA' },
+    { condition: '300х3', mainText: '300х3', redText: '', afterText: '', arrowHours: 1, arrowColor: '#DAE6F4' },
+    { condition: '200х2', mainText: '200х2', redText: '', afterText: '', arrowHours: 1, arrowColor: '#FFFECE' },
+    { condition: '100х1', mainText: '100х1', redText: '', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
+    { condition: '50х0.6', mainText: '50х0.6', redText: '', afterText: '', arrowHours: 1, arrowColor: '#FDCDC9' },
+
 ];
 
 // Доступные цвета стрелок
