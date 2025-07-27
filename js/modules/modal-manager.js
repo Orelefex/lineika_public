@@ -3,7 +3,7 @@ import { NotificationService } from './notification-service.js';
 
 // Константы для модального окна
 const CONSTANTS = {
-    MIN_ARROW_HOURS: 0.5,
+    MIN_ARROW_HOURS: 1,
     MAX_ARROW_HOURS: 18,
     DEFAULT_ARROW_HOURS: 1,
     DEFAULT_ARROW_COLOR: '#E9FFEA'
@@ -21,11 +21,10 @@ const PREDEFINED_CONDITIONS = [
 
 // Доступные цвета стрелок
 const ARROW_COLORS = [
-    { name: 'Зеленый (отличные условия)', value: '#E9FFEA' },
-    { name: 'Голубой (хорошие условия)', value: '#DAE6F4' },
-    { name: 'Желтый (удовлетворительные)', value: '#FFFECE' },
-    { name: 'Красный (плохие условия)', value: '#FDCDC9' },
-    { name: 'Синий (минус)', value: '#DEE7F6' }
+    { name: 'Зеленый', value: '#E9FFEA' },
+    { name: 'Голубой', value: '#DAE6F4' },
+    { name: 'Желтый', value: '#FFFECE' },
+    { name: 'Красный', value: '#FDCDC9' },
 ];
 
 export class ModalManager {
@@ -137,7 +136,7 @@ export class ModalManager {
                     <label for="arrow-hours">Продолжительность (часы):</label>
                     <input type="number" class="arrow-hours" name="arrow-hours" 
                            min="${CONSTANTS.MIN_ARROW_HOURS}" max="${CONSTANTS.MAX_ARROW_HOURS}" 
-                           step="0.5" value="${condition.arrowHours}">
+                           step="1" value="${condition.arrowHours}">
                 </div>
                 
                 <div class="input-group">
