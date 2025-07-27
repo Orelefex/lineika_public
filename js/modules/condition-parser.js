@@ -1,3 +1,6 @@
+// ===== js/modules/condition-parser.js =====
+import { processConditionText } from './weather-processor.js';
+
 export class ConditionParser {
     static parseCondition(value) {
         if (!value) return null;

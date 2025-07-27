@@ -7,6 +7,16 @@ import { TextAdapter } from './modules/text-adapter.js';
 import { FileExporter } from './modules/file-exporter.js';
 import { NotificationService } from './modules/notification-service.js';
 
+// Константы времени для различных операций
+const TIMING_CONSTANTS = {
+    AUTO_SAVE_INTERVAL: 30000,    // 30 секунд для автосохранения
+    DATE_UPDATE_INTERVAL: 60000,  // 60 секунд для обновления даты
+    WINDOW_RESIZE_DEBOUNCE: 250,  // 250ms для debounce изменения размера окна
+    TEXT_ADAPTATION_DELAY: 300,   // 300ms задержка для адаптации текста
+    INITIAL_LOAD_DELAY: 100,      // 100ms для начальной загрузки
+    FORM_SUBMIT_DELAY: 200        // 200ms после добавления строки
+};
+
 class AirportApp {
     constructor() {
         this.initializeManagers();
@@ -65,20 +75,20 @@ class AirportApp {
             
             setTimeout(() => {
                 this.textAdapter.applyToAllArrows();
-            }, 300);
-        }, 250));
+            }, TIMING_CONSTANTS.TEXT_ADAPTATION_DELAY);
+        }, TIMING_CONSTANTS.WINDOW_RESIZE_DEBOUNCE));
 
         // Периодическое обновление даты
         setInterval(() => {
             this.tableManager.updateTableDate();
-        }, 60000);
+        }, TIMING_CONSTANTS.DATE_UPDATE_INTERVAL);
     }
 
     setupAutoSave() {
         // Автосохранение каждые 30 секунд
         setInterval(() => {
             this.stateManager.saveState();
-        }, 30000);
+        }, TIMING_CONSTANTS.AUTO_SAVE_INTERVAL);
 
         // Сохранение при закрытии страницы
         window.addEventListener('beforeunload', () => {
@@ -97,7 +107,7 @@ class AirportApp {
         setTimeout(() => {
             this.tableManager.updateArrowPositions();
             this.textAdapter.applyToAllArrows();
-        }, 100);
+        }, TIMING_CONSTANTS.INITIAL_LOAD_DELAY);
     }
 
     handleFormSubmit(event) {
@@ -114,7 +124,7 @@ class AirportApp {
         setTimeout(() => {
             this.textAdapter.applyToArrows(row);
             this.tableManager.updateProgress(row);
-        }, 200);
+        }, TIMING_CONSTANTS.FORM_SUBMIT_DELAY);
 
         this.modalManager.close();
         this.stateManager.saveState();
