@@ -1,0 +1,73 @@
+/* ===== red-text-fix.css ===== */
+/* Исправления для единообразного отображения красного текста */
+
+/* КРИТИЧЕСКИ ВАЖНО: Переопределяем все конфликтующие стили */
+
+/* Красный текст - основной контейнер */
+.red-text {
+    color: red !important;
+    font-weight: bold !important;
+    font-size: inherit !important; /* Наследуем размер от родителя */
+    line-height: inherit !important;
+    display: inline !important;
+    vertical-align: baseline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ВСЕ элементы внутри красного текста имеют ОДИНАКОВЫЙ размер */
+.red-text .numeric-format,
+.red-text .word-format {
+    font-size: inherit !important; /* Наследуем от красного текста */
+    line-height: inherit !important;
+    display: inline !important;
+    vertical-align: baseline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Убираем старые конфликтующие стили */
+.red-text .word-format {
+    font-size: inherit !important; /* НЕ 0.6em! */
+}
+
+.red-text .numeric-format {
+    font-size: inherit !important; /* Такой же как у остального текста */
+}
+
+/* Для режима с переносом */
+.text-content.wrapped .red-text {
+    display: inline !important;
+    flex-wrap: nowrap !important;
+    white-space: normal !important;
+    font-size: inherit !important;
+}
+
+.text-content.wrapped .red-text .numeric-format,
+.text-content.wrapped .red-text .word-format {
+    font-size: inherit !important;
+    display: inline !important;
+}
+
+/* Убираем все переопределения размера шрифта для красного текста */
+.text-content .red-text {
+    font-size: inherit !important;
+    line-height: inherit !important;
+}
+
+/* Специальная поддержка для случаев, когда размер текста изменяется динамически */
+.text-content[style*="font-size"] .red-text {
+    font-size: inherit !important;
+}
+
+.text-content[style*="font-size"] .red-text .numeric-format,
+.text-content[style*="font-size"] .red-text .word-format {
+    font-size: inherit !important;
+}
+
+/* Убираем возможные конфликты от старых стилей */
+.red-text * {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    vertical-align: baseline !important;
+}

@@ -55,23 +55,21 @@ function processRedTextStructure(textElement) {
         // Очищаем содержимое
         redTextElement.innerHTML = '';
         
-        // Добавляем каждое слово с соответствующим стилем
+        // Добавляем каждое слово с ОДИНАКОВЫМ размером шрифта
         words.forEach((word, index) => {
             const wordSpan = document.createElement('span');
             wordSpan.textContent = word;
             
-            // Проверяем, является ли слово числовым форматом
+            // ВСЕ элементы красного текста имеют одинаковый размер
+            wordSpan.style.fontSize = 'inherit'; // Наследуем размер от родительского элемента
+            wordSpan.style.lineHeight = 'normal';
+            wordSpan.style.verticalAlign = 'baseline';
+            wordSpan.style.display = 'inline';
+            
+            // Добавляем класс для идентификации
             if (isNumericFormat(word)) {
-                // Числовой формат - не уменьшаем
-                wordSpan.style.fontSize = 'inherit';
-                wordSpan.style.lineHeight = 'normal';
-                wordSpan.style.verticalAlign = 'baseline';
                 wordSpan.classList.add('numeric-format');
             } else {
-                // Текстовый формат - уменьшаем
-                wordSpan.style.fontSize = '0.6em';
-                wordSpan.style.lineHeight = '1';
-                wordSpan.style.verticalAlign = 'middle';
                 wordSpan.classList.add('word-format');
             }
             
@@ -87,9 +85,10 @@ function processRedTextStructure(textElement) {
         // Устанавливаем стили для самого контейнера красного текста
         redTextElement.style.color = 'red';
         redTextElement.style.fontWeight = 'bold';
-        redTextElement.style.display = 'inline-flex';
-        redTextElement.style.alignItems = 'center';
-        redTextElement.style.flexWrap = 'nowrap';
+        redTextElement.style.display = 'inline';
+        redTextElement.style.fontSize = 'inherit'; // Наследуем размер от text-content
+        redTextElement.style.lineHeight = 'inherit';
+        redTextElement.style.verticalAlign = 'baseline';
     });
 }
 
@@ -101,25 +100,21 @@ function updateRedTextForWrapping(textElement) {
     const redTextElements = textElement.querySelectorAll('.red-text');
     
     redTextElements.forEach(redElement => {
-        // Убедимся, что красный текст тоже поддерживает перенос
+        // Убедимся, что красный текст поддерживает перенос
         redElement.style.whiteSpace = 'normal';
-        redElement.style.display = 'inline-flex';
-        redElement.style.flexWrap = 'wrap';
-        redElement.style.alignItems = 'center';
+        redElement.style.display = 'inline';
+        redElement.style.fontSize = 'inherit'; // Наследуем размер от родителя
+        redElement.style.lineHeight = 'inherit';
         
-        // Настраиваем дочерние элементы для правильного переноса
-        const numericElements = redElement.querySelectorAll('.numeric-format');
-        const wordElements = redElement.querySelectorAll('.word-format');
+        // Настраиваем все дочерние элементы одинаково
+        const allElements = redElement.querySelectorAll('.numeric-format, .word-format');
         
-        numericElements.forEach(el => {
-            el.style.display = 'inline-block';
+        allElements.forEach(el => {
+            el.style.display = 'inline';
             el.style.whiteSpace = 'normal';
-            el.style.margin = '0 2px 0 0';
-        });
-        
-        wordElements.forEach(el => {
-            el.style.display = 'inline-block';
-            el.style.whiteSpace = 'normal';
+            el.style.fontSize = 'inherit'; // ВСЕ элементы наследуют одинаковый размер
+            el.style.lineHeight = 'inherit';
+            el.style.verticalAlign = 'baseline';
             el.style.margin = '0 2px 0 0';
         });
     });
